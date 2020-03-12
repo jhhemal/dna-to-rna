@@ -1,0 +1,60 @@
+<html>
+    <head>
+        <title>DNA to RNA Convert</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    </head>
+    <body>
+        <div class="container">
+            <h2 class="text-center"> <a href="{{ url_for('home') }}" class="text-danger">DNA 2 RNA Program</a></h2>
+            <form method="POST" action="">
+                {{ form.hidden_tag() }}
+
+                <fieldset class="form-group">
+                    <legend class="border-bottom mb-4">Convert your DNA</legend>
+                    <div class="form-group">
+                        {{ form.dna.label(class="form-control-label") }}
+                        {% if form.dna.errors %}
+                            {{ form.dna(class="form-control form-control-lg is-invalid", placeholder="Enter your DNA Here") }}
+                            <div class="invalid-feedback">
+                                {% for error in form.dna.errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ form.dna(class="form-control form-control-lg", placeholder="Enter your DNA Here") }}
+                        {% endif %}
+                    </div>
+                </fieldset>
+                <div class="form-group">
+                    {{ form.submit(class="btn btn-outline-success") }}
+                </div>
+            </form>
+
+            <div class="text-dark">
+                <h3>RNA</h3>
+                <hr>
+                {% if derror %}
+                    <h4 class="text-danger">{{ derror }}</h4>
+                {% else %}
+                    {% if rna %}
+                        <h4>The DNA is: <span class="text-danger">{{ dna }}</span> </h4>
+                        <h4>The RNA is: <span class="text-danger">{{ rna }}</span> </h4>
+                        <h4>Total Number in DNA:</h4>
+                        <hr>
+                        {% for dl in dlists %}
+                            {% for k,v in dl.items() %}
+                                <h4>{{ k }} : <span class="text-danger">{{ v }}</span> </h4>
+                            {% endfor %}
+                        {% endfor %}
+                    {% endif %}
+                    
+                {% endif %}
+            </div>
+        </div>
+
+
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    </body>
+</html>
